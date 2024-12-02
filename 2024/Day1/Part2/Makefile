@@ -10,8 +10,3 @@ clean:
 run: clean
 	make all
 	./Main input.txt
-
-push:
-	git add .
-	git commit -m "update"
-	git push origin
