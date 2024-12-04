@@ -17,11 +17,11 @@ int xmas(const vector<string>& words) {
 	    } catch (const out_of_range& e) {}
 	    
             try {
-		down = words[i].substr(j, 4);
+		down = words[i][j] + words[i + 1][j] + words[i + 2][j] + words[i + 3][j];
 	    } catch (const out_of_range& e) {}
 
 	     try {
-                diag = words[i].substr(j, 4);
+                diag = words[i][j] + words[i + 1][j + 1] + words[i + 2][j + 2] + words[i + 3][j + 3];
             } catch (const out_of_range& e) {}
 	    if (right == "XMAS" || right == "SAMX") {
 		total++;
