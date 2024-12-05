@@ -14,32 +14,49 @@ int xmas(const vector<string>& words) {
 
             if (j + 3 < words[i].size()) {
                 right = words[i].substr(j, 4);
-                //cout << right << endl;
-
                 if (right == "XMAS" || right == "SAMX") {
                     total++;
                 }
             }
             if (i + 3 < words.size()) {
                 down = words[i][j] + words[i + 1][j] + words[i + 2][j] + words[i + 3][j];
-
                 if (down == "XMAS" || down == "SAMX") {
                     total++;
                 }
             }
             if (i + 3 < words.size() && j + 3 < words[i].size()) {
                 down_right = words[i][j] + words[i + 1][j + 1] + words[i + 2][j + 2] + words[i + 3][j + 3];
-
                 if (down_right == "XMAS" || down_right == "SAMX") {
                     total++;
                 }                
             }
-
-            if (int(i) - 2 > 0 && int(j) - 2 > 0) {
-                //cout << i - 2 << endl << j - 2 << endl;
-                down_left = words[i][j] + words[i - 1][j - 1] + words[i - 2][j - 2] + words[i - 3][j - 3];
-
+            if (i + 3 < words.size() && j > 2) {
+                down_left = words[i][j] + words[i + 1][j - 1] + words[i + 2][j - 2] + words[i + 3][j - 3];
                 if (down_left == "XMAS" || down_left == "SAMX") {
+                    total++;
+                }
+            }
+            if (j > 2) {
+                left = words[i].substr(j - 3, 4);
+                if (left == "XMAS" || left == "SAMX") {
+                    total++;
+                }
+            }
+            if (i > 2) {
+                up = words[i][j] + words[i - 1][j] + words[i - 2][j] + words[i - 3][j];
+                if (up == "XMAS" || up == "SAMX") {
+                    total++;
+                }
+            }
+            if (i > 2 && j > 2) {
+                up_left = words[i][j] + words[i - 1][j - 1] + words[i - 2][j - 2] + words[i - 3][j - 3];
+                if (up_left == "XMAS" || up_left == "SAMX") {
+                    total++;
+                }
+            }
+            if (i > 2 && j + 3 < words[i].size()) {
+                up_right = words[i][j] + words[i - 1][j + 1] + words[i - 2][j + 2] + words[i - 3][j + 3];
+                if (up_right == "XMAS" || up_right == "SAMX") {
                     total++;
                 }
             }
