@@ -7,6 +7,31 @@
 
 using namespace std;
 
+bool contains(const vector<int>& vec, const int& target) {
+
+}
+
+bool is_correct(const vector<int>& update, map<int, vector<int> >& rules) {
+    size_t i, j, k;
+    size_t n = update.size();
+
+    for (i = 0; i < n; i++) {
+        for (j = i; j < n; j++) {
+            int key = update[i];
+            int target = update[j];
+
+            if (!contains(rules[key], target)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int get_middle(const vector<int>& update) {
+
+}
+
 int main(int argc, char **argv) {
     if (argc != 2) {
         cerr << "Incorrect usage\n";
@@ -23,33 +48,48 @@ int main(int argc, char **argv) {
     map<int, vector<int> > rules;
     vector<vector<int> > updates;
     size_t i, j;
+    long total;
+
+    while (getline(file, line)) {
+        if (line.empty()) {
+            break;
+        }
+        stringstream stream(line);
+        vector<int> rule;
+
+        while (getline(stream, token, '|')) {
+            rule.push_back(stoi(token));
+        }
+        if (rule.size() == 2) {
+            rules[rule[0]].push_back(rule[1]);
+        }
+    }
 
     while (getline(file, line)) {
         stringstream stream(line);
-        vector<int> a;
-
-        while (getline(stream, token, '|')) {
-            a.push_back(stoi(token));
-        }
-        if (a.size() == 2) {
-            rules[a[0]].push_back(a[1]);
-            a.clear();
-        }
+        vector<int> update;
 
         while (getline(stream, token, ',')) {
-            a.push_back(stoi(token));
+            update.push_back(stoi(token));
         }
-        if (a.size() > 0) {
-            updates.push_back(a);
+        if (!update.empty()) {
+            updates.push_back(update);
         }
-    }
-    for (i = 0; i < updates.size(); i++) {
-        for (j = 0; j < updates[i].size(); j++) {
-            cout << updates[i][j] << " ";
-        }
-        cout << endl;
     }
 
-    //cout << total << endl;
+    for (i = 0; i < updates.size(); i++) {
+        if (is_correct(updates[i], rules)) {
+            total += get_middle(updates[i]);
+        }
+    }
+/*
+    for (i = 0; i < rules.size(); i++) {
+        for (j = 0; j < rules[i].size(); j++) {
+            cout << rules[i][j] << " ";
+        }
+        cout << endl;
+    }*/
+
+    cout << total << endl;
     return 0;
 }
