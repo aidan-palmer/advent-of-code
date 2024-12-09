@@ -4,23 +4,27 @@
 #include <vector>
 #include <algorithm>
 #include <map>
+#include <set>
 
 using namespace std;
 
-bool contains(const vector<int>& vec, const int& target) {
+bool is_correct(const vector<int>& update, const map<int, set<int>>& rules) {
+    map<int, int> position;
 
-}
+    for (size_t i = 0; i < update.size(); i++) {
+        position[update[i]] = i;
+    }
 
-bool is_correct(const vector<int>& update, map<int, vector<int> >& rules) {
-    size_t i, j, k;
-    size_t n = update.size();
+    for (const auto& rule : rules) {
+        int key = rule.first;
+        const set<int>& targets = rule.second;
 
-    for (i = 0; i < n; i++) {
-        for (j = i; j < n; j++) {
-            int key = update[i];
-            int target = update[j];
+        if (position.find(key) == position.end()) {
+            continue;
+        }
 
-            if (!contains(rules[key], target)) {
+        for (int target : targets) {
+            if (position.find(target) != position.end() && position[key] > position[target]) {
                 return false;
             }
         }
@@ -29,7 +33,7 @@ bool is_correct(const vector<int>& update, map<int, vector<int> >& rules) {
 }
 
 int get_middle(const vector<int>& update) {
-
+    return update[update.size() / 2];
 }
 
 int main(int argc, char **argv) {
@@ -45,10 +49,10 @@ int main(int argc, char **argv) {
     }
     string line;
     string token;
-    map<int, vector<int> > rules;
-    vector<vector<int> > updates;
-    size_t i, j;
-    long total;
+    map<int, set<int>> rules;
+    vector<vector<int>> updates;
+    size_t i;
+    long total = 0;
 
     while (getline(file, line)) {
         if (line.empty()) {
@@ -61,7 +65,7 @@ int main(int argc, char **argv) {
             rule.push_back(stoi(token));
         }
         if (rule.size() == 2) {
-            rules[rule[0]].push_back(rule[1]);
+            rules[rule[0]].insert(rule[1]);
         }
     }
 
@@ -82,13 +86,6 @@ int main(int argc, char **argv) {
             total += get_middle(updates[i]);
         }
     }
-/*
-    for (i = 0; i < rules.size(); i++) {
-        for (j = 0; j < rules[i].size(); j++) {
-            cout << rules[i][j] << " ";
-        }
-        cout << endl;
-    }*/
 
     cout << total << endl;
     return 0;
