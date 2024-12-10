@@ -22,7 +22,6 @@ vector<string> permute(int size) {
 }
 
 bool is_valid(stack<long>& nums, long& test_val) {
-    //int per = (nums.size() - 1) * 2;
     vector<string> per = permute(nums.size() - 1);
 
     for (size_t i = 0; i < per.size(); i++) {
@@ -31,9 +30,20 @@ bool is_valid(stack<long>& nums, long& test_val) {
         copy.pop();
 
         for (size_t j = 0; j < per[i].size(); j++) {
-            // TODO
+            long cur = copy.top();
+            copy.pop();
+
+            if (per[i][j] == '*') {
+                val *= cur;
+            } else {
+                val += cur;
+            }
+        }
+        if (val == test_val) {
+            return true;
         }
     }
+    return false;
 }
 
 long calibrate(const vector<vector<long>>& equations) {
@@ -51,6 +61,7 @@ long calibrate(const vector<vector<long>>& equations) {
             total += test_value;
         }
     }
+    return total;
 }
 
 int main(int argc, char **argv) {
@@ -95,14 +106,7 @@ int main(int argc, char **argv) {
         }
         equations.push_back(equation);
     }
-/*
-    for (size_t i = 0; i < equations.size(); i++) {
-        for (size_t j = 0; j < equations[i].size(); j++) {
-            cout << equations[i][j] << " ";
-        }
-        cout << endl;
-    }
-*/
+
     cout << calibrate(equations) << endl;
     return 0;
 }
