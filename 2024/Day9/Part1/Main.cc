@@ -1,31 +1,43 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <cstdint>
 
 #define SPACE 255
 
 using namespace std;
 
-vector<uint8_t> expand(vector<uint8_t> nums) {
+vector<uint8_t> expand(vector<uint8_t> nums) { 
     vector<uint8_t> files;
 
     for (size_t i = 0, j = 0; i < nums.size(); i += 2, j++) {
         // Add ID number
         for (size_t k = 0; k < nums[i]; k++) {
-            files.push_back(j);
+            files.push_back(uint8_t(j));
         }
         // Add spaces
-        for (size_t l = 0; l < nums[i + 1]; l++) {
-            files.push_back(SPACE);
+        if (i < nums.size() - 1) {
+            for (size_t l = 0; l < nums[i + 1]; l++) {
+                files.push_back(SPACE);
+            }
         }
+
     }
+    cout << "Expanded size: " << files.size() << endl;
     return files;
 }
 
-vector<uint8_t> compact(vector<uint8_t> nums, size_t og_size) {
+vector<uint8_t> compact(vector<uint8_t> blocks) {
+    vector<uint8_t> nums(blocks);
     size_t i = 1, j = nums.size() - 1;
+/*
+    // debugging
+    for (size_t k = 0; k < nums.size(); k++) {
+        cout << int(nums[k]) << " ";
+    }
+    cout << endl << endl;*/
 
-    while (nums.size() > og_size) {
+    while (i < j) {
         if (nums[i] == SPACE) {
             while (nums[j] == SPACE) {
                 nums.pop_back();
@@ -34,14 +46,20 @@ vector<uint8_t> compact(vector<uint8_t> nums, size_t og_size) {
             nums[i] = nums[j];
             nums.pop_back();
             j--;
+/*
+            // debugging
+            for (size_t k = 0; k < nums.size(); k++) {
+                cout << int(nums[k]) << " ";
+            }
+            cout << endl << endl;*/
         }
         i++;
     }
     return nums;
 }
 
-long checksum(const vector<uint8_t>& blocks) {
-    long answer = 0;
+size_t checksum(const vector<uint8_t>& blocks) {
+    size_t answer = 0;
 
     for (size_t i = 1; i < blocks.size(); i++) {
         answer += i * blocks[i];
@@ -62,13 +80,17 @@ int main(int argc, char **argv) {
     }
     string line;
     vector<uint8_t> nums;
+    size_t count = 0;
 
     while (getline(file, line)) {
         for (size_t i = 0; i < line.size(); i++) {
-            nums.push_back(line[i] - '0');
+            nums.push_back(uint8_t(line[i] - '0'));
+            count++;
         }
     }
+    cout << "Input length: " << count << endl;
 
-    cout << checksum(compact(expand(nums), nums.size())) << endl;
+    cout << checksum(compact(expand(nums))) << endl;
+    //cout << "max: " << UINT64_MAX << endl;
     return 0;
 }
