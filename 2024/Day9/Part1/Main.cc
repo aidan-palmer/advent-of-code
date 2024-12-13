@@ -32,7 +32,7 @@ vector<uint8_t> compact(vector<uint8_t> blocks) {
     size_t i = 1, j = nums.size() - 1;
 /*
     // debugging
-    for (size_t k = 0; k < nums.size(); k++) {
+    for (size_t k = 0; k < 50; k++) {
         cout << int(nums[k]) << " ";
     }
     cout << endl << endl;*/
@@ -91,6 +91,5 @@ int main(int argc, char **argv) {
     cout << "Input length: " << count << endl;
 
     cout << checksum(compact(expand(nums))) << endl;
-    //cout << "max: " << UINT64_MAX << endl;
     return 0;
 }
