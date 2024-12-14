@@ -1,35 +1,57 @@
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <vector>
+#include <tuple>
+#include <map>
 #include <chrono>
 
 using namespace std;
 
-bool even_length(size_t x) {
+map<ulong, tuple<ulong, ulong>> cache;
+
+bool contains(ulong x) {
+    for (const auto& pair : cache) {
+        if (pair.first == x) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool even_length(ulong x) {
     string s = to_string(x);
     return s.size() % 2 == 0;
 }
 
-vector<size_t> split(size_t x) {
+vector<ulong> split(ulong x) {
     string s = to_string(x);
     string a = s.substr(0, s.size() / 2);
     string b = s.substr(s.size() / 2);
 
-    vector<size_t> result;
+    vector<ulong> result;
     result.push_back(stoi(a));
     result.push_back(stoi(b));
     return result;
 }
 
-void blink(vector<size_t>& stones) {
+void blink(vector<ulong>& stones) {
     for (size_t i = 0; i < stones.size(); i++) {
         if (stones[i] == 0) {
             stones[i] = 1;
         } else if (even_length(stones[i])) {
-            vector<size_t> spl = split(stones[i]);
-            stones[i] = spl[0];
-            stones.insert(stones.begin() + i + 1, spl[1]);
+            ulong a, b;
+            if (contains(stones[i])) {
+                a = get<0>(cache[stones[i]]);
+                b = get<1>(cache[stones[i]]);
+            } else {
+                vector<ulong> spl = split(stones[i]);
+                a = spl[0];
+                b = spl[1];
+                cache[stones[i]] = make_tuple(a, b);
+            }
+            stones[i] = a;
+            stones.insert(stones.begin() + i + 1, b);
             i++;            
         } else {
             stones[i] *= 2024;
@@ -50,7 +72,7 @@ int main(int argc, char **argv) {
     }
     string line;
     string token;
-    vector<size_t> stones;
+    vector<ulong> stones;
 
     while (getline(file, line)) {
         stringstream stream(line);
@@ -61,13 +83,14 @@ int main(int argc, char **argv) {
     }
     auto start = chrono::steady_clock::now();
 
-    for (size_t i = 0; i < 25; i++) {
+    for (uint i = 0; i < 75; i++) {
         blink(stones);
+        cout << "Progress: iteration " << i << endl;
     }
     auto end = chrono:: steady_clock::now();
     chrono::duration<double> elapsed = end - start;
 
-    cout << "Program duration: " << elapsed.count() << " seconds" << endl;
+    cout << "Program duration: " << elapsed.count() << endl;
 
     cout << stones.size() << endl;
     return 0;
