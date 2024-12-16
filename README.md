@@ -27,7 +27,7 @@ Day 12: :star:
 
 Day 13: :star:
 
-Day 14:
+Day 14: :star: :star:
 
 Day 15:
 
