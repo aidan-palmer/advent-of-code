@@ -1,6 +1,6 @@
 ## [Advent of Code](https://adventofcode.com/)
 
-### My 2024 Progress
+### 2024 Progress
 Day 1: :star: :star:
 
 Day 2: :star: :star:
@@ -33,7 +33,7 @@ Day 15: :star:
 
 Day 16:
 
-Day 17:
+Day 17: :star:
 
 Day 18:
 
