@@ -24,52 +24,18 @@ enum registers {
     C
 };
 
-vector<int> reg;
+long reg[3];
 
-int combo(uint8_t op) {
+int combo(int op) {
     if (op > 3) {
         return reg[op % 4];
     }
     return op % 4;
 }
 
-
-int main(int argc, char **argv) {
-    if (argc != 2) {
-        cerr << "Incorrect usage\n";
-        return 1;
-    }
-    fstream file(argv[1]);
-
-    if (!file) {
-        cerr << "Error: file not found.\n";
-        return 2;
-    }
-    string line;
-    string token;
-
-    vector<int> instr;
-    bool is_reg = true;
-
-    while (getline(file, line)) {
-        if (line.empty()) {
-            is_reg = false;
-            continue;
-        }
-        if (is_reg) {
-            reg.push_back(stoi(line.substr(12)));
-        } else {
-            stringstream stream(line.substr(9));
-
-            while (getline(stream, token, ',')) {
-                instr.push_back(stoi(token));
-            }
-        }
-    }
-    file.close();
-
-    int pc = 0;
+vector<int> run(const vector<int>& instr) {
     vector<int> output;
+    int pc = 0;
 
     while (pc < int(instr.size())) {
 
@@ -127,12 +93,71 @@ int main(int argc, char **argv) {
             }
         }
     }
-    size_t i;
+    return output;
+}
 
-    for (i = 0; i < output.size() - 1; i++) {
-        cout << output[i] << ",";
+bool equals(const vector<int>& a, const vector<int>& b) {
+    if (a.size() != b.size()) {
+        return false;
     }
-    cout << output[i] << endl;
 
+    for (size_t i = 0; i < a.size(); i++) {
+        if (a[i] != b[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+int main(int argc, char **argv) {
+    if (argc != 2) {
+        cerr << "Incorrect usage\n";
+        return 1;
+    }
+    fstream file(argv[1]);
+
+    if (!file) {
+        cerr << "Error: file not found.\n";
+        return 2;
+    }
+    string line;
+    string token;
+
+    vector<int> instr;
+    bool is_reg = true;
+
+    while (getline(file, line)) {
+        if (line.empty()) {
+            is_reg = false;
+            continue;
+        }
+        if (!is_reg) {
+            stringstream stream(line.substr(9));
+
+            while (getline(stream, token, ',')) {
+                instr.push_back(stoi(token));
+            }
+        }
+    }
+    file.close();
+
+    // answer is greater than int max
+
+    for (long i = INT32_MAX; i < INT64_MAX; i++) {
+        if (i % 8 == 0) {
+            //cout << i << endl;
+            reg[A] = i;
+            reg[B] = 0;
+            reg[C] = 0;
+            vector<int> result = run(instr);
+
+            if (equals(result, instr)) {
+                cout << i << endl;
+                return 0;
+            }
+        }
+
+    }
     return 0;
 }
