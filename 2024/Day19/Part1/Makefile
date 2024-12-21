@@ -1,5 +1,5 @@
 CC = g++
-FLAGS = -g -Wall -Wextra
+FLAGS = -std=c++20 -g -Wall -Wextra
 
 all: Main.cc
 	$(CC) $(FLAGS) -o Main Main.cc

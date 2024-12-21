@@ -5,24 +5,39 @@
 #include <array>
 #include <cstdint>
 #include <climits>
+#include <algorithm>
 
 using namespace std;
 
-#define SIZE 7 // change to 71
-#define NUM_BYTES 12 // change to 1024
+vector<string> patterns;
+vector<size_t> pattern_lengths;
+int result = 0;
 
-enum {
-    X = 0,
-    Y
-};
+bool contains(string x) {
+    for (size_t i = 0; i < patterns.size(); i++) {
+        if (patterns[i] == x) {
+            return true;
+        }
+    }
+    return false;
+}
 
-enum {
-    BYTE = '#',
-    UP = 1,
-    DOWN,
-    LEFT,
-    RIGHT
-};
+void is_possible(string design) {
+    if (design.empty()) {
+        result++;
+        return;
+    }
+
+    for (size_t len : pattern_lengths) {
+        if (len <= design.size()) {
+            string sub = design.substr(0, len);
+
+            if (contains(sub)) {
+                is_possible(sub);
+            }
+        }
+    }
+}
 
 
 int main(int argc, char **argv) {
@@ -38,37 +53,54 @@ int main(int argc, char **argv) {
     }
     string line;
     string token;
-    vector<vector<int>> indices;
-    array<array<char, SIZE>, SIZE> grid;
+    vector<string> designs;
+    bool is_pattern = true;
+    int total = 0;
     size_t i;
 
     while (getline(file, line)) {
-        stringstream stream(line);
-        vector<int> index;
-
-        while (getline(stream, token, ',')) {
-            index.push_back(stoi(token));
+        if (line.empty()) {
+            is_pattern = false;
+            continue;
         }
-        indices.push_back(index);
+
+        if (is_pattern) {
+            stringstream stream(line);
+
+            while (getline(stream, token, ' ')) {
+                patterns.push_back(token.substr(0, token.size() - 1));
+            }
+        } else {
+            designs.push_back(line);
+        }
     }
     file.close();
-
-    for (i = 0; i < SIZE; i++) {
-        grid[i].fill('.');
-    }
-
-    for (i = 0; i < NUM_BYTES; i++) {
-        grid[indices[i][Y]][indices[i][X]] = BYTE;
-    }
 /*
-    for (i = 0; i < SIZE; i++) {
-        for (j = 0; j < SIZE; j++) {
-            cout << grid[i][j];
-        }
-        cout << endl;
+    for (i = 0; i < patterns.size(); i++) {
+        cout << patterns[i] << " ";
     }
+    cout << endl;
+
+    for (i = 0; i < designs.size(); i++) {
+        cout << designs[i] << " ";
+    }
+    cout << endl;
 */
 
-    //cout << shortest_path(grid) << endl;
+    for (i = 0; i < patterns.size(); i++) {
+        pattern_lengths.push_back(patterns[i].size());
+    }
+    sort(pattern_lengths.begin(), pattern_lengths.end());
+
+    for (i = 0; i < designs.size(); i++) {
+        result = 0;
+        is_possible(designs[i]);
+
+        if (result > 0) {
+            total++;
+        }
+    }
+
+    cout << total << endl;
     return 0;
 }
