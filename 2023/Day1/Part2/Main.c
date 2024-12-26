@@ -118,9 +118,6 @@ int main() {
         } else {
             sum += x * 10 + y;
         }
-
-        
-
     }
     printf("%d", sum);
 
