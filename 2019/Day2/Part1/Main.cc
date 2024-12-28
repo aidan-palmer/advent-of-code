@@ -1,12 +1,9 @@
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 using namespace std;
-
-int fuel(int mass) {
-    return mass / 3 - 2;
-}
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -20,17 +17,40 @@ int main(int argc, char **argv) {
         return 2;
     }
     string line;
-    vector<int> modules;
-    int total = 0;
+    string token;
+    vector<int> intcode;
+    //int total = 0;
 
     while (getline(file, line)) {
-        modules.push_back(stoi(line));
+        stringstream stream(line);
+
+        while (getline(stream, token, ',')) {
+            intcode.push_back(stoi(token));
+        }
+    }
+    intcode[1] = 12;
+    intcode[2] = 2;
+
+    for (size_t i = 0; i < intcode.size(); i += 4) {
+        switch (intcode[i]) {
+            case 1:
+            {
+                intcode[intcode[i + 3]] = intcode[intcode[i + 1]] + intcode[intcode[i + 2]];
+                break;
+            }
+            case 2:
+            {
+                intcode[intcode[i + 3]] = intcode[intcode[i + 1]] * intcode[intcode[i + 2]];
+                break;              
+            }
+            case 99:
+            {
+                cout << intcode[0] << endl;
+                return 0;
+            }
+        }
     }
 
-    for (int mass : modules) {
-        total += fuel(mass);
-    }
-
-    cout << total << endl;
+    cout << intcode[0] << endl;
     return 0;
 }

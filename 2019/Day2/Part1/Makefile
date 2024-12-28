@@ -7,9 +7,11 @@ all: Main.cc
 clean:
 	rm -f Main *.o
 
-run: clean
-	make all
+run: clean all
 	./Main input.txt
+
+test: clean all
+	./Main example.txt
 
 dbg:
 	gdb -q --args ./Main example.txt
