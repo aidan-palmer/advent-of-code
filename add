@@ -1,0 +1,10 @@
+#!/bin/bash
+git add .
+msg=""
+if [ $# -gt 0 ]; then
+    msg=$1
+else
+    msg="update"
+fi
+git commit -m "$msg"
+git push origin main

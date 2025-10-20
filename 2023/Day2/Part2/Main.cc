@@ -54,11 +54,12 @@ int main(int argc, char **argv) {
     string token;
     string cube;
     int total = 0;
-    int game = 1;
     while (getline(file, line)) {
         line = line.substr(index_of(line, ':'));
         stringstream stream(line);
-        bool valid = true;
+        int m_red = 0;
+        int m_green = 0;
+        int m_blue = 0;
         while (getline(stream, token, ';')) {
             int red = 0;
             int green = 0;
@@ -79,15 +80,17 @@ int main(int argc, char **argv) {
                         break;
                 }
             }
-            if (red > 12 || green > 13 || blue > 14) {
-                valid = false;
-                break;
+            if (red > m_red) {
+                m_red = red;
+            }
+            if (green > m_green) {
+                m_green = green;
+            }
+            if (blue > m_blue) {
+                m_blue = blue;
             }
         }
-        if (valid) {
-            total += game;
-        }
-        game++;
+        total += m_red * m_green * m_blue;
     }
     cout << total << endl;
     return 0;
