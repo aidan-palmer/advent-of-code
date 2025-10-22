@@ -8,42 +8,45 @@
 
 using namespace std;
 
-bool is_star(char c) {
-    return c == '*';
+bool is_symbol(char c) {
+    if (!isdigit(c) && c != '.') {
+        return true;
+    }
+    return false;
 }
 
 bool is_valid(int row, int start, int end, vector<string>& grid) {
     for (int i = start; i <= end; i++) {
         // Up
-        if (row - 1 >= 0 && is_star(grid[row - 1][i])) {
+        if (row - 1 >= 0 && is_symbol(grid[row - 1][i])) {
             return true;
         }
         // Down
-        if (row + 1 < grid.size() && is_star(grid[row + 1][i])) {
+        if (row + 1 < grid.size() && is_symbol(grid[row + 1][i])) {
             return true;
         }
         // Left
-        if (i == start && i - 1 >= 0 && is_star(grid[row][i - 1])) {
+        if (i == start && i - 1 >= 0 && is_symbol(grid[row][i - 1])) {
             return true;
         }
         // Right
-        if (i == end && i + 1 < grid[row].size() && is_star(grid[row][i + 1])) {
+        if (i == end && i + 1 < grid[row].size() && is_symbol(grid[row][i + 1])) {
             return true;
         }
         // Right-Up
-        if (i == end && i + 1 < grid[row].size() && row - 1 >= 0 && is_star(grid[row - 1][i + 1])) {
+        if (i == end && i + 1 < grid[row].size() && row - 1 >= 0 && is_symbol(grid[row - 1][i + 1])) {
             return true;
         }
         // Right-Down
-        if (i == end && i + 1 < grid[row].size() && row + 1 < grid.size() && is_star(grid[row + 1][i + 1])) {
+        if (i == end && i + 1 < grid[row].size() && row + 1 < grid.size() && is_symbol(grid[row + 1][i + 1])) {
             return true;
         }
         // Left-Up
-        if (i == start && i - 1 >= 0 && row - 1 >= 0 && is_star(grid[row - 1][i - 1])) {
+        if (i == start && i - 1 >= 0 && row - 1 >= 0 && is_symbol(grid[row - 1][i - 1])) {
             return true;
         }
         // Left-Down
-        if (i == start && i - 1 >= 0 && row + 1 < grid.size() && is_star(grid[row + 1][i - 1])) {
+        if (i == start && i - 1 >= 0 && row + 1 < grid.size() && is_symbol(grid[row + 1][i - 1])) {
             return true;
         }
     }
