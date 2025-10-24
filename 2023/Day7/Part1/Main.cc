@@ -11,7 +11,8 @@ struct Hand {
     int bid;
 };
 
-map<char, int> strength;
+map<char, int> strength = {{'2', 0}, {'3', 1}, {'4', 2}, {'5', 3}, {'6', 4}, 
+    {'7', 5}, {'8', 6}, {'9', 7}, {'T', 8}, {'J', 9}, {'Q', 10}, {'K', 11}, {'A', 12}};
 
 int index_of(string s, char c) {
     for (size_t i = 0; i < s.size(); i++) {
@@ -53,6 +54,29 @@ int type(Hand h) {
     return 0;
 }
 
+// Returns true if x > y
+bool greater(Hand x, Hand y) {
+    for (int i = 0; i < 5; i++) {
+        if (x.cards[i])
+    }
+}
+
+void sort(vector<Hand>& hands) {
+    for (size_t i = 1; i < hands.size(); i++) {
+        Hand key = hands[i];
+        int j = i - 1;
+
+        /* Move elements of arr[0..i-1], that are
+        greater than key, to one position ahead
+        of their current position */
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
 int main(int argc, char **argv) {
     if (argc != 2) {
         cerr << "Incorrect usage\n";
@@ -80,9 +104,7 @@ int main(int argc, char **argv) {
         types[t].push_back(h);
     }
     for (int i = 0; i < 7; i++) {
-        for (Hand h : types[i]) {
-            cout << h.cards << endl;
-        }
+        sort(types[i]);
     }
 
 //    cout << total << endl;
