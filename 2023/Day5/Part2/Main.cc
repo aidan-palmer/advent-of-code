@@ -25,6 +25,17 @@ long location(long seed, vector<vector<Map>> maps) {
     return seed;
 }
 
+long min_loc(long seed, long range, vector<vector<Map>> maps) {
+    long min = LONG_MAX;
+    for (long i = seed; i < seed + range; i++) {
+        long loc = location(i, maps);
+        if (loc < min) {
+            min = loc;
+        }
+    }
+    return min;
+}
+
 int main(int argc, char **argv) {
     if (argc != 2) {
         cerr << "Incorrect usage\n";
@@ -70,8 +81,8 @@ int main(int argc, char **argv) {
         maps.push_back(tmp);
     }
     long min = LONG_MAX;
-    for (long s : seeds) {
-        long loc = location(s, maps);
+    for (size_t i = 0; i < seeds.size() - 1; i += 2) {
+        long loc = min_loc(seeds[i], seeds[i + 1], maps);
         if (loc < min) {
             min = loc;
         }
