@@ -12,7 +12,7 @@ struct Hand {
 };
 
 map<char, int> strength = {{'2', 0}, {'3', 1}, {'4', 2}, {'5', 3}, {'6', 4}, 
-    {'7', 5}, {'8', 6}, {'9', 7}, {'T', 8}, {'J', 9}, {'Q', 10}, {'K', 11}, {'A', 12}};
+    {'7', 5}, {'8', 6}, {'9', 7}, {'T', 8}, {'J', -1}, {'Q', 10}, {'K', 11}, {'A', 12}};
 
 int index_of(string s, char c) {
     for (size_t i = 0; i < s.size(); i++) {
@@ -29,8 +29,24 @@ int type(Hand h) {
     for (char c : h.cards) {
         freq[c]++;
     }
+   // cout << h.cards << " Number of J's: " << freq['J'] << endl;
     int threes = 0;
     int twos = 0;
+    if (freq['J'] > 0) {
+        char max_ch = ' ';
+        int max = -1;
+        int j = freq['J'];
+        freq['J'] = 0;
+        for (const auto& m : freq) {
+            if (m.second > max) {
+                max = m.second;
+                max_ch = m.first;
+            }
+        }
+        freq[max_ch] += j;
+        //cout << "Max frequency: " << max << " " << char(max_ch) << endl;
+        //freq['J'] = 0;
+    }
     for (const auto& m : freq) {
         if (m.second == 5) {
             return 6;
@@ -105,14 +121,16 @@ int main(int argc, char **argv) {
     for (Hand h : hands) {
         int t = type(h);
         types[t].push_back(h);
+        //cout << h.cards << " Type: " << t << endl;
     }
-    int rank = 1;
-    long total = 0;
+    long long rank = 1;
+    long long total = 0;
     for (int i = 0; i < 7; i++) {
         sort(types[i]);
         for (Hand h : types[i]) {
             total += rank * h.bid;
             rank++;
+            //cout << h.cards << " " << h.bid << endl;
         }
     }
     cout << total << endl;
