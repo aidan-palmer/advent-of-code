@@ -1,0 +1,15 @@
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.GeneratedMSBuildEditorConfig.editorconfig
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.AssemblyInfoInputs.cache
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.AssemblyInfo.cs
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.csproj.CoreCompileInputs.cache
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.sourcelink.json
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/bin/Debug/net9.0/Part1
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/bin/Debug/net9.0/Part1.deps.json
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/bin/Debug/net9.0/Part1.runtimeconfig.json
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/bin/Debug/net9.0/Part1.dll
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/bin/Debug/net9.0/Part1.pdb
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.dll
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/refint/Part1.dll
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.pdb
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/Part1.genruntimeconfig.cache
+/home/aidan/develop/advent-of-code/2022/Day1/Part1/obj/Debug/net9.0/ref/Part1.dll
