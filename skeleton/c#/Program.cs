@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.IO;
 
-class Solution
+class Program
 {
     public static void Main(string[] args)
     {
@@ -10,26 +10,13 @@ class Solution
             throw new ArgumentException("Error: provide a text file as an argument.");
         }
         String line;
-        int sum = 0;
-        int max = -1;
         try
         {
             StreamReader sr = new StreamReader(args[0]);
             line = sr.ReadLine();
             while (line != null)
             {
-                if (line.Length == 0)
-                {
-                    if (sum > max)
-                    {
-                        max = sum;
-                    }
-                    sum = 0;
-                }
-                else
-                {
-                    sum += int.Parse(line);
-                }
+
                 line = sr.ReadLine();
             }
         }
@@ -37,6 +24,6 @@ class Solution
         {
             throw new Exception(e.Message);
         }
-        Console.WriteLine(max);
+        
     }
 }
