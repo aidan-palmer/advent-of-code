@@ -46,8 +46,6 @@ class Program
             line = sr.ReadLine();
             while (line != null)
             {
-                //char c = Common(a, b);
-                //total += Priority(c);
                 bags.Add(line);
                 line = sr.ReadLine();
             }
