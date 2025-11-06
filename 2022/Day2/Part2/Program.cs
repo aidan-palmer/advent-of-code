@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 class Program
 {
@@ -10,52 +11,38 @@ class Program
             if (y == 'X')
             {
                 return 3;
-            } else if (y == 'Y') 
+            } else if (y == 'Y')
             {
-                return 6;
+                return 4;
             } else
             {
-                return 0;
+                return 8;
             }
         } else if (x == 'B')
         {
             if (y == 'X')
             {
-                return 0;
+                return 1;
             } else if (y == 'Y')
             {
-                return 3;
+                return 5;
             } else
             {
-                return 6;
+                return 9;
             }
         } else
-        {
+        { // C
             if (y == 'X')
             {
-                return 6;
+                return 2;
             } else if (y == 'Y')
             {
-                return 0;
+                return 6;
             } else
             {
-                return 3;
+                return 7;
             }
         }
-    }
-    
-    static int ShapeScore(char x)
-    {
-        switch (x)
-        {
-            case 'X':
-                return 1;
-            case 'Y':
-                return 2;
-            case 'Z':
-                return 3;
-        }
-        return -1;
     }
 
     public static void Main(string[] args)
@@ -73,7 +60,6 @@ class Program
             while (line != null)
             {
                 total += Score(line[0], line[2]);
-                total += ShapeScore(line[2]);
                 line = sr.ReadLine();
             }
         }

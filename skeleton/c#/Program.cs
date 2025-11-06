@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 class Program
 {
@@ -9,7 +10,7 @@ class Program
         {
             throw new ArgumentException("Error: provide a text file as an argument.");
         }
-        String line;
+        string line;
         try
         {
             StreamReader sr = new StreamReader(args[0]);

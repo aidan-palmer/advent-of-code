@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/Users/aidan/develop/advent-of-code/2022/Day2/Part1/c#.csproj": {}
+    "/home/aidan/develop/advent-of-code/2022/Day2/Part2/c#.csproj": {}
   },
   "projects": {
-    "/Users/aidan/develop/advent-of-code/2022/Day2/Part1/c#.csproj": {
+    "/home/aidan/develop/advent-of-code/2022/Day2/Part2/c#.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/aidan/develop/advent-of-code/2022/Day2/Part1/c#.csproj",
+        "projectUniqueName": "/home/aidan/develop/advent-of-code/2022/Day2/Part2/c#.csproj",
         "projectName": "c#",
-        "projectPath": "/Users/aidan/develop/advent-of-code/2022/Day2/Part1/c#.csproj",
-        "packagesPath": "/Users/aidan/.nuget/packages/",
-        "outputPath": "/Users/aidan/develop/advent-of-code/2022/Day2/Part1/obj/",
+        "projectPath": "/home/aidan/develop/advent-of-code/2022/Day2/Part2/c#.csproj",
+        "packagesPath": "/home/aidan/.nuget/packages/",
+        "outputPath": "/home/aidan/develop/advent-of-code/2022/Day2/Part2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/aidan/.nuget/NuGet/NuGet.Config"
+          "/home/aidan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -59,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.111/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
