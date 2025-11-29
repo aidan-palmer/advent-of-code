@@ -13,14 +13,16 @@ int main(int argc, char **argv) {
         return 2;
     }
     string line;
-    string token;
+    vector<int> depths;
+    int total = 0;
     while (getline(file, line)) {
-        stringstream stream(line);
-        while (getline(stream, token, ' ')) {
-
+        depths.push_back(stoi(line));
+    }
+    for (size_t i = 1; i < depths.size(); i++) {
+        if (depths[i] > depths[i - 1]) {
+            total++;
         }
     }
-
-//    cout << total << endl;
+    cout << total << endl;
     return 0;
 }
