@@ -13,33 +13,75 @@ int main(int argc, char **argv) {
         return 2;
     }
     string line;
-    string gamma;
-    string epsilon;
-    vector<string> report;
+    vector<string> oxygen;
+    vector<string> scrubber;
     size_t i, j;
     while (getline(file, line)) {
-        report.push_back(line);
+        oxygen.push_back(line);
+        scrubber.push_back(line);
     }
-    for (i = 0; i < report[0].size(); i++) {
+    string ogr;
+    for (i = 0; i < oxygen[0].size(); i++) {
         int zero = 0;
         int one = 0;
-        for (j = 0; j < report.size(); j++) {
-            if (report[j][i] == '0') {
+        for (j = 0; j < oxygen.size(); j++) {
+            if (oxygen[j][i] == '0') {
                 zero++;
             } else {
                 one++;
             }
         }
         if (zero > one) {
-            gamma += '0';
-            epsilon += '1';
+            for (j = 0; j < oxygen.size(); j++) {
+                if (oxygen[j][i] == '1') {
+                    oxygen.erase(oxygen.begin() + j);
+                    j--;
+                }
+            }
         } else {
-            gamma += '1';
-            epsilon += '0';
+            for (j = 0; j < oxygen.size(); j++) {
+                if (oxygen[j][i] == '0') {
+                    oxygen.erase(oxygen.begin() + j);
+                    j--;
+                }
+            }
+        }
+        if (oxygen.size() == 1) {
+            ogr = oxygen[0];
         }
     }
-    int g = stoi(gamma, nullptr, 2);
-    int e = stoi(epsilon, nullptr, 2);
-    cout << g * e << endl;
+    string scr;
+    for (i = 0; i < scrubber[0].size(); i++) {
+        int zero = 0;
+        int one = 0;
+        for (j = 0; j < scrubber.size(); j++) {
+            if (scrubber[j][i] == '0') {
+                zero++;
+            } else {
+                one++;
+            }
+        }
+        if (zero > one) {
+            for (j = 0; j < scrubber.size(); j++) {
+                if (scrubber[j][i] == '0') {
+                    scrubber.erase(scrubber.begin() + j);
+                    j--;
+                }
+            }
+        } else {
+            for (j = 0; j < scrubber.size(); j++) {
+                if (scrubber[j][i] == '1') {
+                    scrubber.erase(scrubber.begin() + j);
+                    j--;
+                }
+            }
+        }
+        if (scrubber.size() == 1) {
+            scr = scrubber[0];
+        }
+    }
+    int o = stoi(ogr, nullptr, 2);
+    int s = stoi(scr, nullptr, 2);
+    cout << o * s << endl;
     return 0;
 }
