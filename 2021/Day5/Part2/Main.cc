@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
         p2.push_back(point2);
     }
     map<pair<int, int>, int> points;
-    int j;
+    int j, k;
     // same x = vertical, same y = horizontal
     for (size_t i = 0; i < p1.size(); i++) {
         if (p1[i].first == p2[i].first) {
@@ -67,6 +67,30 @@ int main(int argc, char **argv) {
             } else {
                 for (j = p2[i].first; j <= p1[i].first; j++) {
                     points[{j, p1[i].second}]++;
+                }
+            }
+        } else {
+            int diffx = abs(p1[i].first - p2[i].first);
+            int diffy = abs(p1[i].second - p2[i].second);
+            if (diffx == diffy) {
+                int x1 = p1[i].first;
+                int y1 = p1[i].second;
+                int x2 = p2[i].first;
+                int y2 = p2[i].second;
+                if (x1 > x2) {
+                    x1 = x2;
+                    y1 = y2;
+                    x2 = p1[i].first;
+                    y2 = p1[i].second;
+                }
+                if (y1 < y2) {
+                    for (j = x1, k = y1; j <= x2; j++, k++) {
+                        points[{j, k}]++;
+                    }
+                } else {
+                    for (j = x1, k = y1; j <= x2; j++, k--) {
+                        points[{j, k}]++;
+                    }
                 }
             }
         }
