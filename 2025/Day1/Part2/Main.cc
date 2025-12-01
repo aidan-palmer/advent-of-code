@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -20,20 +21,23 @@ int main(int argc, char **argv) {
         char dir = line[0];
         int dist = stoi(line.substr(1));
         if (dir == 'L') {
-            if (dist >= prev) {
-                zeros += 1 + (dist - prev) / 100;
-            }
-            dial = (prev - dist % 100 + 100) % 100;
+            dial -= dist;
         } else {
-            int first = (100 - prev) % 100;
-            if (first == 0) {
-                first = 100;
-            }
-            if (dist >= first) {
-                zeros += 1 + (dist - first) / 100;
-            }
-            dial = (prev + dist % 100) % 100;
+            dial += dist;
         }
+        int count = 0;
+        while (dial < 0) {
+            dial += 100;
+            count++;
+        }
+        while (dial > 99) {
+            dial -= 100;
+            count++;
+        }
+        if ((dial == 0 || prev == 0) && count > 0) {
+            count--;
+        }
+        zeros += count;
         if (dial == 0) {
             zeros++;
         }
