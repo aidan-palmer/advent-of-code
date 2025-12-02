@@ -20,22 +20,28 @@ int main(int argc, char **argv) {
     while (getline(file, line)) {
         char dir = line[0];
         int dist = stoi(line.substr(1));
+        int count = 0;
         if (dir == 'L') {
             dial -= dist;
+            while (dial < 0) {
+                dial += 100;
+                count++;
+            }
+            if (dial == 0 && prev == 0) {
+                count--;
+            }
+            if (prev == 0 && dist % 100 < 100) {
+                count--;
+            }
         } else {
             dial += dist;
-        }
-        int count = 0;
-        while (dial < 0) {
-            dial += 100;
-            count++;
-        }
-        while (dial > 99) {
-            dial -= 100;
-            count++;
-        }
-        if ((dial == 0 || prev == 0) && count > 0) {
-            count--;
+            while (dial > 99) {
+                dial -= 100;
+                count++;
+            }
+            if (dial == 0 && count > 0) {
+                count--;
+            }
         }
         zeros += count;
         if (dial == 0) {
