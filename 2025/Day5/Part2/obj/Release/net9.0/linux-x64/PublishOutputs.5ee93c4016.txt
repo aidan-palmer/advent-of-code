@@ -1,0 +1,5 @@
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/publish/c#
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/publish/c#.dll
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/publish/c#.deps.json
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/publish/c#.runtimeconfig.json
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/publish/c#.pdb

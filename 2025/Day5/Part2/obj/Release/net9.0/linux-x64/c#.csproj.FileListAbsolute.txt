@@ -1,0 +1,15 @@
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/c#
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/c#.deps.json
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/c#.runtimeconfig.json
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/c#.dll
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/bin/Release/net9.0/linux-x64/c#.pdb
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.GeneratedMSBuildEditorConfig.editorconfig
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.AssemblyInfoInputs.cache
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.AssemblyInfo.cs
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.csproj.CoreCompileInputs.cache
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.sourcelink.json
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.dll
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/refint/c#.dll
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.pdb
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/c#.genruntimeconfig.cache
+/home/aidan/develop/advent-of-code/2025/Day5/Part2/obj/Release/net9.0/linux-x64/ref/c#.dll
