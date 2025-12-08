@@ -81,8 +81,22 @@ void add(int x, int y) {
     circuits.push_back(s);
 }
 
-void merge() {
+bool is_connected(set<int> x, set<int> y) {
 
+}
+
+void merge() {
+    for (size_t i = 0; i < circuits.size() - 1; i++) {
+        for (size_t j = i + 1; j < circuits.size(); j++) {
+            if (is_connected(circuits[i], circuits[j])) {
+                for (int k : circuits[j]) {
+                    circuits[i].insert(k);
+                }
+                // remove
+                j--;
+            }
+        }
+    }
 }
 
 void connect() {
