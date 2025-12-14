@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LzW05ONlWSU=",
+  "dgSpecHash": "PEsO6QqIA5k=",
   "success": true,
-  "projectFilePath": "/Users/aidan/develop/advent-of-code/skeleton/c#/c#.csproj",
+  "projectFilePath": "/home/aidan/develop/advent-of-code/skeleton/c#/c#.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/aidan/develop/advent-of-code/2022/Day4/Part1/c#.csproj",
+      "projectUniqueName": "/home/aidan/develop/advent-of-code/2022/Day4/Part2/c#.csproj",
       "projectName": "c#",
-      "projectPath": "/home/aidan/develop/advent-of-code/2022/Day4/Part1/c#.csproj",
+      "projectPath": "/home/aidan/develop/advent-of-code/2022/Day4/Part2/c#.csproj",
       "packagesPath": "/home/aidan/.nuget/packages/",
-      "outputPath": "/home/aidan/develop/advent-of-code/2022/Day4/Part1/obj/",
+      "outputPath": "/home/aidan/develop/advent-of-code/2022/Day4/Part2/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/aidan/.nuget/NuGet/NuGet.Config"
@@ -66,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.111/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.112/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
