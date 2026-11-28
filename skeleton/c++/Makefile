@@ -1,5 +1,5 @@
 CC = g++
-FLAGS = -g -Wall -Wextra -Wunused-variable -Wuninitialized
+FLAGS = -std=c++20 -g -Wall -Wextra -Wunused-variable -Wuninitialized
 
 all: Main.cc
 	$(CC) $(FLAGS) -o Main Main.cc
